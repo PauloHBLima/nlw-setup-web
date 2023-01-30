@@ -6,10 +6,10 @@ import { HabitDay } from "./HabitDay";
 
 const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
-const SummaryDates = generateDatesFromYearBeginning();
+const summaryDates = generateDatesFromYearBeginning();
 
 const minimunSummaryDatesSize = 18 * 7;
-const amountOfDaysFill = minimunSummaryDatesSize - SummaryDates.length;
+const amountOfDaysFill = minimunSummaryDatesSize - summaryDates.length;
 
 type Summary = {
   id: String;
@@ -44,7 +44,7 @@ export function SummaryTable() {
       </div>
 
       <div className="grid grid-rows-7 grid-flow-col gap-3">
-        {SummaryDates.map( date => {
+        {summary.length > 0 &&  summaryDates.map(date => {
           const dayInSummary = summary.find(day => {
             return dayjs(date).isSame(day.date, 'day')
           })
@@ -54,7 +54,7 @@ export function SummaryTable() {
           key={date.toString()} 
           date={date}
           amount={dayInSummary?.amount} 
-          completed={dayInSummary?.completed} 
+          defaultCompleted={dayInSummary?.completed} 
           />
           )
         })}
